@@ -16,22 +16,79 @@ $(function(){
 			var signup = $.ajax({
 				type: "POST",
 				url: WorkoutLog.API_BASE + "user",
-				data: JSON.stringify(user),
+				data: JSON.stringify( user ),
 				contentType: "application/json"
 			});
 			//signup done/fail
 			signup.done(function(data){
-				WorkoutLog.setAuthHeader(data.sessionToken);
+				if(data.sessionToken){
+					WorkoutLog.setAuthHeader(data.sessionToken);
+					console.log("You signed up successfully!")
+					console.log(data.sessionToken);
+				}
 			
 				$("#signup-modal").modal("hide");
 				$(".disabled").removeClass("disabled");
 				$("#loginout").text("Logout");
 
-			}).fail(function(){
+			}).fail(function() {
 				$("#su_error").text("There was an issue with sign up").show();
 			});
+		
+		},
+		//login method
+		login: function(){
+			//login variables
+			console.log("Not working");
+			var username = $("#li_username").val();
+			var password = $("#li_password").val();
+			var user = {
+				user: {
+					username: username,
+					password: password
+				}
+			};
+
+			console.log(1);
+			//login POST
+			var login =$.ajax({
+				type: "POST",
+				url: WorkoutLog.API_BASE + "login",
+				data: JSON.stringify( user ),
+				contentType: "application/json"
+			});
+			console.log(2);
+			//login done/fail
+			login.done(function(data){
+				if(data.sessionToken){
+					WorkoutLog.setAuthHeader(data.sessionToken);
+					}
+				$("#login-modal").modal("hide");
+				$(".disabled").removeClass("disabled");
+				$("#loginout").text("Logout");
+			}).fail(function(){
+				console.log(3);
+				$("#li_error").text("There was an issue with log in").show();
+			});
+		},
+		//loginout method
+		loginout: function(){
+			if(window.localStorage.getItem("sessionToken")){
+				window.localStorage.removeItem("sessionToken");
+				$("#loginout").text("Login");
+			}
 		}
-	})//end workout log
+		
+	});
+	//end workout log
+	//bind events
 		$("#signup").on("click", WorkoutLog.signup);
-});//end outsidde function
+		$("#login").on("click", WorkoutLog.login);
+		$("#loginout").on("click", WorkoutLog.loginout);
+
+		if(window.localStorage.getItem("sessionToken")){
+			$("#loginout").text("Logout");
+		}
+		
+});//end outside function
 
