@@ -1,8 +1,14 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var sequelize = require('./db.js')
+var User = sequelize.import('./models/user');
+
+User.sync();  //User.sync({ force: true }); WARNING: THIS WILL DROP A TABLE!
 
 //./middleware/headers? This directory doesn't look correct. Append .js to path?
+
+app.use(bodyParser.json());
 app.use(require('./middleware/headers'));
 
 app.use('/api/test', function(req, res){
@@ -12,32 +18,6 @@ app.use('/api/test', function(req, res){
 app.listen(3000, function(){
 	console.log("app is listening on port 3000");
 });
-
-
-var Sequelize = require('sequelize');
-var sequelize = new Sequelize('workoutlog', 'postgres', 'Letmein1234!', {
-	host : 'localhost',
-	dialect : 'postgres'
-});
-
-sequelize.authenticate().then(
-	function() {
-		console.log('connected to workoutlog postgres db');
-	},
-	function(err){
-		console.log(err);
-
-	}
-);
-//build a user model in sqllize
-var User = sequelize.define('user',{
-	username: Sequelize.STRING,
-	//HEY WHAT ABOUT THIS COMMA AT THE END OF THE CALLBACK?!
-	passwordhash : Sequelize.STRING,
-});
-User.sync();
-//User.sync({ force: true });
-app.use(bodyParser.json());
 app.post('/api/user', function(req,res){
 	var username = req.body.user.username;
 	var pass = req.body.user.password;
@@ -58,4 +38,3 @@ app.post('/api/user', function(req,res){
 		);
 	//Need to create a user object and use Sequelize to put that user into our database
 });
-
