@@ -1,3 +1,4 @@
+//bower makes finding and loading packages/dependencies very easy to execute
 {
   "name": "client",
   "description": "",

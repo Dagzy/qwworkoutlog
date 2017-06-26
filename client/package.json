@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    //The "start" script here is what loads in the page
     "start":"node ./node_modules/http-server/bin/http-server"
   },
   "author": "Quincy Williams",

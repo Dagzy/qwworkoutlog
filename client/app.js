@@ -1,3 +1,5 @@
+
+//Once the document has finished loading and is "ready" then dynamic functionality is applied
 $(document).ready(function(){
    	$("#testAPI").on("click", function(){
    		console.log("It is working");
