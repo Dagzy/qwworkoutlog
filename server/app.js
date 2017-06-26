@@ -10,6 +10,7 @@ User.sync();  //User.sync({ force: true }); WARNING: THIS WILL DROP A TABLE!
 
 app.use(bodyParser.json());
 app.use(require('./middleware/headers'));
+app.use('/api/login', require('./routes/session'));
 app.use('/api/user', require('./routes/user'));
 app.use('/api/test', function(req, res){
 	res.send("Hello World");
