@@ -36,7 +36,7 @@ var User = sequelize.define('user',{
 	passwordhash : Sequelize.STRING,
 });
 User.sync();
-//User.sync({ force:true });
+//User.sync({ force: true });
 app.use(bodyParser.json());
 app.post('/api/user', function(req,res){
 	var username = req.body.user.username;
