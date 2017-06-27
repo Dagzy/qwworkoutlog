@@ -11,12 +11,17 @@ var User = sequelize.import('./models/user');
 //Comment out and comment out and comment out and comment out
 //./middleware/headers? This directory doesn't look correct. Append .js to path?
 sequelize.sync();
+
 app.use(bodyParser.json());
+
 app.use(require('./middleware/headers'));
 app.use(require('./middleware/validate-session'));
 app.use('/api/user', require('./routes/user'));
 app.use('/api/login', require('./routes/session'));
 app.use('/api/definition', require('./routes/definition'));
+app.use('/api/log', require('./routes/log'));
+
+
 app.use('/api/test', function(req, res){
 	res.send('Hello World');
 });

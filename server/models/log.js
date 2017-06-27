@@ -5,5 +5,5 @@ module.exports = function(sequelize, DataTypes){
 		owner: DataTypes.INTEGER,
 		def: DataTypes.STRING
 	},{
-	})
-}
+	});
+};
