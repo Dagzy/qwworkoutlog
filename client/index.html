@@ -21,6 +21,19 @@
 		<li><a href="#" id="testAPI">Test API</a></li>
 	</ul>
 
+	<div class="tab-pane" id="define">
+		<h2>Define</h2>
+		<label for="def-description">Description</label>
+		<textarea class="form-control" id="def-description" rows="3"></textarea>
+		<label for="def-logtype">Log Work By</label>
+		<select class="form-control" id= "def-logtype">
+			<option>Time</option>
+			<option>Weight</option>
+			<option>Reps</option>
+		</select>
+		<button id="def-save" class="btn btn-primary">Save</button>
+	</div>
+
 	<div class="container">
 		<div class="tab-content">
 			<div class="tab-pane active" id="home">
@@ -82,5 +95,6 @@
 	<script type="text/javascript" src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./app.js"></script>
 	<script type="text/javascript" src="./user/auth.js"></script>
+	<script type="text/javascript" src="./workouts/define.js"></script>
 	</body>
 </html>
