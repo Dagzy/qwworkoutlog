@@ -32,8 +32,13 @@ $(function(){
 				$("#signup-modal").modal("hide");
 				$(".disabled").removeClass("disabled");
 				$("#loginout").text("Logout");
+				$("#su_username").val("");
+				$("#su-password").val("");
+				//routing
+				$('a[href="#define"]').tab("show");
 
-			}).fail(function() {
+			})
+			.fail(function() {
 				$("#su_error").text("There was an issue with sign up").show();
 			});
 		
@@ -70,7 +75,13 @@ $(function(){
 				$("#login-modal").modal("hide");
 				$(".disabled").removeClass("disabled");
 				$("#loginout").text("Logout");
-			}).fail(function(){
+				
+				$("#li_username").val("");
+				$("#li_password").val("");
+				$('a[href="#define"]').tab("show");
+
+			})
+			.fail(function(){
 				console.log(3);
 				$("#li_error").text("There was an issue with log in").show();
 			});
